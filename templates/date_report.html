@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+
+{% block main %}
+ <!-- 图表容器 DOM -->
+ <div id="container" style="width: 80%;height:400px;margin: 80px auto;"></div>
+ <!-- 引入 highcharts.js -->
+ <script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+
+<!-- 需要保存导出功能模块文件是在 highcharts.js 之后引入 -->
+<script src="http://cdn.hcharts.cn/highcharts/modules/exporting.js"></script>
+
+<!-- 客户端导出功能模块为可选选项 -->
+<script src="http://cdn.hcharts.cn/highcharts/modules/offline-exporting.js"></script>
+ <script>
+     // 图表配置
+     var options = {
+         chart: {
+             type: 'bar'                          //指定图表的类型，默认是折线图（line）
+         },
+         title: {
+             text: '钣喷车间数据报表'                 // 标题
+         },
+         xAxis: {
+             categories: ['钣金', '前处理', '喷漆', '抛光', '质检']   // x 轴分类
+         },
+         yAxis: {
+             title: {
+                 text: '目前在修台次'                // y 轴标题
+             }
+         },
+         series: [{                              // 数据列
+             // name: '小明',                        // 数据列名
+             // data: [1, 0, 4]                     // 数据
+         }, {
+             name: '台次',
+             data: [20, 13, 10, 6, 15]
+         }]
+     };
+     // 图表初始化函数
+     var chart = Highcharts.chart('container', options);
+ </script>
+
+
+{% endblock %}
+
+
